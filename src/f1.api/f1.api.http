@@ -1,0 +1,562 @@
+@baseUrl = http://localhost:5026
+@contentType = application/json
+
+###############################################################################
+# EQUIPES - Endpoints
+###############################################################################
+
+### GET - Obter todas as equipes
+GET {{baseUrl}}/api/equipes
+Accept: {{contentType}}
+
+###
+
+### GET - Obter equipe por ID (ID 1 - Red Bull Racing)
+GET {{baseUrl}}/api/equipes/1
+Accept: {{contentType}}
+
+###
+
+### GET - Obter equipe por ID (ID 2 - Mercedes)
+GET {{baseUrl}}/api/equipes/2
+Accept: {{contentType}}
+
+###
+
+### GET - Obter equipe por ID (ID 3 - Ferrari)
+GET {{baseUrl}}/api/equipes/3
+Accept: {{contentType}}
+
+###
+
+### GET - Obter equipe inexistente (deve retornar 404)
+GET {{baseUrl}}/api/equipes/999
+Accept: {{contentType}}
+
+###
+
+### POST - Criar nova equipe
+POST {{baseUrl}}/api/equipes
+Content-Type: {{contentType}}
+
+{
+  "nome": "McLaren Racing",
+  "pais": "Reino Unido",
+  "anoFundacao": 1963
+}
+
+###
+
+### POST - Criar nova equipe (Alpine)
+POST {{baseUrl}}/api/equipes
+Content-Type: {{contentType}}
+
+{
+  "nome": "Alpine F1 Team",
+  "pais": "França",
+  "anoFundacao": 2021
+}
+
+###
+
+### POST - Criar equipe com dados inválidos (deve retornar 400)
+POST {{baseUrl}}/api/equipes
+Content-Type: {{contentType}}
+
+{
+  "nome": "A",
+  "pais": "",
+  "anoFundacao": 1800
+}
+
+###
+
+### PUT - Atualizar equipe existente (ID 1)
+PUT {{baseUrl}}/api/equipes/1
+Content-Type: {{contentType}}
+
+{
+  "nome": "Oracle Red Bull Racing",
+  "pais": "Áustria",
+  "anoFundacao": 2005
+}
+
+###
+
+### PUT - Atualizar equipe inexistente (deve retornar 404)
+PUT {{baseUrl}}/api/equipes/999
+Content-Type: {{contentType}}
+
+{
+  "nome": "Equipe Teste",
+  "pais": "Brasil",
+  "anoFundacao": 2024
+}
+
+###
+
+### DELETE - Deletar equipe (use um ID de equipe criada anteriormente)
+DELETE {{baseUrl}}/api/equipes/4
+Accept: {{contentType}}
+
+###
+
+### DELETE - Deletar equipe inexistente (deve retornar 404)
+DELETE {{baseUrl}}/api/equipes/999
+Accept: {{contentType}}
+
+###
+
+###############################################################################
+# PILOTOS - Endpoints
+###############################################################################
+
+### GET - Obter todos os pilotos
+GET {{baseUrl}}/api/pilotos
+Accept: {{contentType}}
+
+###
+
+### GET - Obter piloto por ID
+GET {{baseUrl}}/api/pilotos/1
+Accept: {{contentType}}
+
+###
+
+### GET - Obter piloto inexistente (deve retornar 404)
+GET {{baseUrl}}/api/pilotos/999
+Accept: {{contentType}}
+
+###
+
+### GET - Obter pilotos de uma equipe específica (Red Bull - ID 1)
+GET {{baseUrl}}/api/pilotos/equipe/1
+Accept: {{contentType}}
+
+###
+
+### GET - Obter pilotos de uma equipe específica (Mercedes - ID 2)
+GET {{baseUrl}}/api/pilotos/equipe/2
+Accept: {{contentType}}
+
+###
+
+### GET - Obter pilotos de uma equipe específica (Ferrari - ID 3)
+GET {{baseUrl}}/api/pilotos/equipe/3
+Accept: {{contentType}}
+
+###
+
+### GET - Obter pilotos de equipe inexistente (deve retornar 404)
+GET {{baseUrl}}/api/pilotos/equipe/999
+Accept: {{contentType}}
+
+###
+
+### POST - Criar novo piloto (Max Verstappen - Red Bull)
+POST {{baseUrl}}/api/pilotos
+Content-Type: {{contentType}}
+
+{
+  "nome": "Max Verstappen",
+  "nacionalidade": "Holandês",
+  "dataNascimento": "1997-09-30",
+  "equipeId": 1
+}
+
+###
+
+### POST - Criar novo piloto (Lewis Hamilton - Mercedes)
+POST {{baseUrl}}/api/pilotos
+Content-Type: {{contentType}}
+
+{
+  "nome": "Lewis Hamilton",
+  "nacionalidade": "Britânico",
+  "dataNascimento": "1985-01-07",
+  "equipeId": 2
+}
+
+###
+
+### POST - Criar novo piloto (Charles Leclerc - Ferrari)
+POST {{baseUrl}}/api/pilotos
+Content-Type: {{contentType}}
+
+{
+  "nome": "Charles Leclerc",
+  "nacionalidade": "Monegasco",
+  "dataNascimento": "1997-10-16",
+  "equipeId": 3
+}
+
+###
+
+### POST - Criar novo piloto (Lando Norris - McLaren - assumindo ID 4)
+POST {{baseUrl}}/api/pilotos
+Content-Type: {{contentType}}
+
+{
+  "nome": "Lando Norris",
+  "nacionalidade": "Britânico",
+  "dataNascimento": "1999-11-13",
+  "equipeId": 4
+}
+
+###
+
+### POST - Criar piloto com equipe inexistente (deve retornar 400)
+POST {{baseUrl}}/api/pilotos
+Content-Type: {{contentType}}
+
+{
+  "nome": "Piloto Teste",
+  "nacionalidade": "Brasileiro",
+  "dataNascimento": "1995-05-15",
+  "equipeId": 999
+}
+
+###
+
+### POST - Criar piloto com dados inválidos (deve retornar 400)
+POST {{baseUrl}}/api/pilotos
+Content-Type: {{contentType}}
+
+{
+  "nome": "A",
+  "nacionalidade": "B",
+  "dataNascimento": "2030-01-01",
+  "equipeId": 1
+}
+
+###
+
+### POST - Criar piloto muito jovem (deve retornar 400 - menos de 16 anos)
+POST {{baseUrl}}/api/pilotos
+Content-Type: {{contentType}}
+
+{
+  "nome": "Piloto Jovem",
+  "nacionalidade": "Brasileiro",
+  "dataNascimento": "2020-01-01",
+  "equipeId": 1
+}
+
+###
+
+### PUT - Atualizar piloto existente
+PUT {{baseUrl}}/api/pilotos/1
+Content-Type: {{contentType}}
+
+{
+  "nome": "Max Verstappen",
+  "nacionalidade": "Holandês",
+  "dataNascimento": "1997-09-30",
+  "equipeId": 1
+}
+
+###
+
+### PUT - Transferir piloto para outra equipe
+PUT {{baseUrl}}/api/pilotos/2
+Content-Type: {{contentType}}
+
+{
+  "nome": "Lewis Hamilton",
+  "nacionalidade": "Britânico",
+  "dataNascimento": "1985-01-07",
+  "equipeId": 3
+}
+
+###
+
+### PUT - Atualizar piloto inexistente (deve retornar 404)
+PUT {{baseUrl}}/api/pilotos/999
+Content-Type: {{contentType}}
+
+{
+  "nome": "Piloto Teste",
+  "nacionalidade": "Brasileiro",
+  "dataNascimento": "1995-05-15",
+  "equipeId": 1
+}
+
+###
+
+### PUT - Atualizar piloto com equipe inexistente (deve retornar 400)
+PUT {{baseUrl}}/api/pilotos/1
+Content-Type: {{contentType}}
+
+{
+  "nome": "Max Verstappen",
+  "nacionalidade": "Holandês",
+  "dataNascimento": "1997-09-30",
+  "equipeId": 999
+}
+
+###
+
+### DELETE - Deletar piloto (use um ID de piloto criado anteriormente)
+DELETE {{baseUrl}}/api/pilotos/1
+Accept: {{contentType}}
+
+###
+
+### DELETE - Deletar piloto inexistente (deve retornar 404)
+DELETE {{baseUrl}}/api/pilotos/999
+Accept: {{contentType}}
+
+###
+
+###############################################################################
+# TESTES DE FLUXO COMPLETO
+###############################################################################
+
+### FLUXO 1: Criar equipe, criar piloto, atualizar piloto, deletar piloto, deletar equipe
+# Passo 1: Criar equipe
+POST {{baseUrl}}/api/equipes
+Content-Type: {{contentType}}
+
+{
+  "nome": "Aston Martin F1 Team",
+  "pais": "Reino Unido",
+  "anoFundacao": 2021
+}
+
+# Anote o ID retornado e use nos próximos passos
+
+###
+
+# Passo 2: Criar piloto para a equipe criada (substitua equipeId pelo ID da equipe criada)
+POST {{baseUrl}}/api/pilotos
+Content-Type: {{contentType}}
+
+{
+  "nome": "Fernando Alonso",
+  "nacionalidade": "Espanhol",
+  "dataNascimento": "1981-07-29",
+  "equipeId": 5
+}
+
+###
+
+# Passo 3: Listar pilotos da equipe
+GET {{baseUrl}}/api/pilotos/equipe/5
+Accept: {{contentType}}
+
+###
+
+# Passo 4: Atualizar piloto (substitua o ID pelo ID do piloto criado)
+PUT {{baseUrl}}/api/pilotos/5
+Content-Type: {{contentType}}
+
+{
+  "nome": "Fernando Alonso Díaz",
+  "nacionalidade": "Espanhol",
+  "dataNascimento": "1981-07-29",
+  "equipeId": 5
+}
+
+###
+
+# Passo 5: Deletar piloto
+DELETE {{baseUrl}}/api/pilotos/5
+Accept: {{contentType}}
+
+###
+
+# Passo 6: Deletar equipe
+DELETE {{baseUrl}}/api/equipes/5
+Accept: {{contentType}}
+
+###
+
+###############################################################################
+# CORRIDAS - Endpoints
+###############################################################################
+
+### GET - Obter todas as corridas
+GET {{baseUrl}}/api/corridas
+Accept: {{contentType}}
+
+###
+
+### GET - Obter corrida por ID
+GET {{baseUrl}}/api/corridas/1
+Accept: {{contentType}}
+
+###
+
+### GET - Obter corrida inexistente (deve retornar 404)
+GET {{baseUrl}}/api/corridas/999
+Accept: {{contentType}}
+
+###
+
+### POST - Criar nova corrida (GP do Brasil)
+POST {{baseUrl}}/api/corridas
+Content-Type: {{contentType}}
+
+{
+  "corridaId": 0,
+  "nome": "Grande Prêmio do Brasil",
+  "local": "Interlagos - São Paulo",
+  "data": "2025-11-09"
+}
+
+###
+
+### POST - Criar nova corrida (GP de Mônaco)
+POST {{baseUrl}}/api/corridas
+Content-Type: {{contentType}}
+
+{
+  "corridaId": 0,
+  "nome": "Grande Prêmio de Mônaco",
+  "local": "Monte Carlo",
+  "data": "2025-05-25"
+}
+
+###
+
+### POST - Criar nova corrida (GP da Itália)
+POST {{baseUrl}}/api/corridas
+Content-Type: {{contentType}}
+
+{
+  "corridaId": 0,
+  "nome": "Grande Prêmio da Itália",
+  "local": "Monza",
+  "data": "2025-09-07"
+}
+
+###
+
+### POST - Criar nova corrida (GP de Silverstone)
+POST {{baseUrl}}/api/corridas
+Content-Type: {{contentType}}
+
+{
+  "corridaId": 0,
+  "nome": "Grande Prêmio da Grã-Bretanha",
+  "local": "Silverstone",
+  "data": "2025-07-06"
+}
+
+###
+
+### POST - Criar nova corrida (GP de Spa)
+POST {{baseUrl}}/api/corridas
+Content-Type: {{contentType}}
+
+{
+  "corridaId": 0,
+  "nome": "Grande Prêmio da Bélgica",
+  "local": "Spa-Francorchamps",
+  "data": "2025-07-27"
+}
+
+###
+
+### POST - Criar nova corrida (GP do Japão)
+POST {{baseUrl}}/api/corridas
+Content-Type: {{contentType}}
+
+{
+  "corridaId": 0,
+  "nome": "Grande Prêmio do Japão",
+  "local": "Suzuka",
+  "data": "2025-04-06"
+}
+
+###
+
+### PUT - Atualizar corrida existente (alterar data/local)
+PUT {{baseUrl}}/api/corridas/1
+Content-Type: {{contentType}}
+
+{
+  "corridaId": 1,
+  "nome": "Grande Prêmio do Brasil",
+  "local": "Autódromo José Carlos Pace - Interlagos",
+  "data": "2025-11-09"
+}
+
+###
+
+### PUT - Atualizar corrida inexistente (deve retornar 404)
+PUT {{baseUrl}}/api/corridas/999
+Content-Type: {{contentType}}
+
+{
+  "corridaId": 999,
+  "nome": "GP Inexistente",
+  "local": "Lugar Nenhum",
+  "data": "2025-12-31"
+}
+
+###
+
+### DELETE - Deletar corrida
+DELETE {{baseUrl}}/api/corridas/6
+Accept: {{contentType}}
+
+###
+
+### DELETE - Deletar corrida inexistente (deve retornar 404)
+DELETE {{baseUrl}}/api/corridas/999
+Accept: {{contentType}}
+
+###
+
+###############################################################################
+# FLUXO COMPLETO - Calendário de Corridas 2025
+###############################################################################
+
+### Criar múltiplas corridas do calendário F1 2025
+
+# Corrida 1 - Bahrain
+POST {{baseUrl}}/api/corridas
+Content-Type: {{contentType}}
+
+{
+  "corridaId": 0,
+  "nome": "Grande Prêmio do Bahrain",
+  "local": "Sakhir",
+  "data": "2025-03-02"
+}
+
+###
+
+# Corrida 2 - Arábia Saudita
+POST {{baseUrl}}/api/corridas
+Content-Type: {{contentType}}
+
+{
+  "corridaId": 0,
+  "nome": "Grande Prêmio da Arábia Saudita",
+  "local": "Jeddah",
+  "data": "2025-03-09"
+}
+
+###
+
+# Corrida 3 - Austrália
+POST {{baseUrl}}/api/corridas
+Content-Type: {{contentType}}
+
+{
+  "corridaId": 0,
+  "nome": "Grande Prêmio da Austrália",
+  "local": "Melbourne",
+  "data": "2025-03-16"
+}
+
+###
+
+# Listar todas as corridas criadas
+GET {{baseUrl}}/api/corridas
+Accept: {{contentType}}
+
+###
+
