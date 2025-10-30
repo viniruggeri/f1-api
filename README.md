@@ -34,3 +34,13 @@ Estes dados, quando bem estruturados, podem servir diversas aplicações: desde 
 - **Dados precisos** e sempre atualizados
 - **Performance consistente** nas consultas
 - **Disponibilidade alta** do serviço
+
+---
+
+## 👥 Integrantes do Grupo
+
+- **RM560593** - Vinicius Lira Ruggeri
+- **RM560431** - Barbara Bonome Filipus
+- **RM560039** - Yasmin Pereira Silva
+
+---
